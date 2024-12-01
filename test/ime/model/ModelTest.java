@@ -26,8 +26,7 @@ public class ModelTest {
   ImageInterface originalImage;
   private ModelInterface model;
 
-  private static Map<String, int[][]> convertTo2DPixelArray(
-      BufferedImage bufferedImage) {
+  private static Map<String, int[][]> convertTo2DPixelArray(BufferedImage bufferedImage) {
     int width = bufferedImage.getWidth();
     int height = bufferedImage.getHeight();
     int[][] redMatrix = new int[height][width];
@@ -45,8 +44,7 @@ public class ModelTest {
       }
     }
 
-    return Map.of("red", redMatrix, "green", greenMatrix, "blue", blueMatrix,
-        "alpha", alphaMatrix);
+    return Map.of("red", redMatrix, "green", greenMatrix, "blue", blueMatrix, "alpha", alphaMatrix);
   }
 
   /**
@@ -56,8 +54,7 @@ public class ModelTest {
    * @param map2 map of string to 2d int array
    * @return boolean
    */
-  public static boolean compareImageMaps(
-      Map<String, int[][]> map1, Map<String, int[][]> map2) {
+  public static boolean compareImageMaps(Map<String, int[][]> map1, Map<String, int[][]> map2) {
     if (map1 == null || map2 == null) {
       return map1 == map2;
     }
@@ -105,10 +102,8 @@ public class ModelTest {
   public void setUp() {
     model = new Model();
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
     originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
 
@@ -121,11 +116,8 @@ public class ModelTest {
    */
   @Test
   public void testImageStorageAndRetrieval() {
-    PixelInterface[][] pixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+    PixelInterface[][] pixels = {{new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
     ImageInterface testImage = new Image(pixels.length, pixels[0].length);
     testImage.imageFill(pixels);
 
@@ -144,24 +136,20 @@ public class ModelTest {
    * @param component      the name of the image component being tested (e.g., "Sepia",
    *                       "Brightness")
    */
-  private void assertImagesEqual(PixelInterface[][] expectedPixels,
-      ImageInterface actualImage, String component) {
+  private void assertImagesEqual(PixelInterface[][] expectedPixels, ImageInterface actualImage,
+      String component) {
     for (int row = 0; row < expectedPixels.length; row++) {
       for (int col = 0; col < expectedPixels[0].length; col++) {
         PixelInterface expectedPixel = expectedPixels[row][col];
         PixelInterface actualPixel = actualImage.getPixel(row, col);
 
-        assertEquals(
-            component + " Red value mismatch at (" + row + ", " + col + ")",
+        assertEquals(component + " Red value mismatch at (" + row + ", " + col + ")",
             expectedPixel.getR(), actualPixel.getR());
-        assertEquals(
-            component + " Green value mismatch at (" + row + ", " + col + ")",
+        assertEquals(component + " Green value mismatch at (" + row + ", " + col + ")",
             expectedPixel.getG(), actualPixel.getG());
-        assertEquals(
-            component + " Blue value mismatch at (" + row + ", " + col + ")",
+        assertEquals(component + " Blue value mismatch at (" + row + ", " + col + ")",
             expectedPixel.getB(), actualPixel.getB());
-        assertEquals(
-            component + " Alpha value mismatch at (" + row + ", " + col + ")",
+        assertEquals(component + " Alpha value mismatch at (" + row + ", " + col + ")",
             expectedPixel.getA(), actualPixel.getA());
       }
     }
@@ -174,33 +162,22 @@ public class ModelTest {
   @Test
   public void testSepiaPixelTransformation() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255),
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255),
             new Pixel(200, 200, 200, 255)},
-        {new Pixel(50, 50, 50, 255),
-            new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(100, 100, 100, 255)}};
+        {new Pixel(50, 50, 50, 255), new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(50, 50, 50, 255), new Pixel(100, 100, 100, 255)}};
 
     PixelInterface[][] expectedSepiaPixels = {
-        {new Pixel(135, 120, 93, 255),
-            new Pixel(202, 180, 140, 255),
+        {new Pixel(135, 120, 93, 255), new Pixel(202, 180, 140, 255),
             new Pixel(255, 240, 187, 255)},
-        {new Pixel(67, 60, 46, 255),
-            new Pixel(135, 120, 93, 255),
-            new Pixel(202, 180, 140, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(67, 60, 46, 255),
-            new Pixel(135, 120, 93, 255)}};
+        {new Pixel(67, 60, 46, 255), new Pixel(135, 120, 93, 255), new Pixel(202, 180, 140, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(67, 60, 46, 255), new Pixel(135, 120, 93, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
 
-    ImageInterface expectedImage =
-        new Image(expectedSepiaPixels.length, expectedSepiaPixels[0].length);
+    ImageInterface expectedImage = new Image(expectedSepiaPixels.length,
+        expectedSepiaPixels[0].length);
     expectedImage.imageFill(expectedSepiaPixels);
 
     ModelInterface model = new Model();
@@ -222,33 +199,28 @@ public class ModelTest {
   @Test
   public void testBrightenImageTransformation() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     String brightenIncrement = "50";
 
     PixelInterface[][] expectedBrightenedPixels = {
-        {new Pixel(150, 200, 250, 255),
-            new Pixel(100, 150, 200, 255)},
-        {new Pixel(50, 100, 150, 255),
-            new Pixel(250, 255, 255, 255)}};
+        {new Pixel(150, 200, 250, 255), new Pixel(100, 150, 200, 255)},
+        {new Pixel(50, 100, 150, 255), new Pixel(250, 255, 255, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
 
-    ImageInterface expectedOutputImage = new Image(
-        expectedBrightenedPixels.length, expectedBrightenedPixels[0].length);
+    ImageInterface expectedOutputImage = new Image(expectedBrightenedPixels.length,
+        expectedBrightenedPixels[0].length);
     expectedOutputImage.imageFill(expectedBrightenedPixels);
 
     ModelInterface model = new Model();
     model.storeImage("original", originalImage);
 
     /* brighten brighten-increment image-name dest-image-name */
-    List<String> commandTokens =
-        List.of("brighten", brightenIncrement, "original", "brightenedResult");
+    List<String> commandTokens = List.of("brighten", brightenIncrement, "original",
+        "brightenedResult");
     model.operationsFactoryCall("brighten", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("brightenedResult");
@@ -264,29 +236,23 @@ public class ModelTest {
   @Test
   public void testLumaComponentTransformation() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
     PixelInterface[][] expectedLumaPixels = {
-        {new Pixel(143, 143, 143, 255),
-            new Pixel(93, 93, 93, 255)},
-        {new Pixel(43, 43, 43, 255),
-            new Pixel(217, 217, 217, 255)}};
+        {new Pixel(143, 143, 143, 255), new Pixel(93, 93, 93, 255)},
+        {new Pixel(43, 43, 43, 255), new Pixel(217, 217, 217, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
-    ImageInterface expectedLumaImage =
-        new Image(expectedLumaPixels.length, expectedLumaPixels[0].length);
+    ImageInterface expectedLumaImage = new Image(expectedLumaPixels.length,
+        expectedLumaPixels[0].length);
     expectedLumaImage.imageFill(expectedLumaPixels);
     ModelInterface model = new Model();
 
     model.storeImage("original", originalImage);
 
     /* luma-component manas manas-luma */
-    List<String> commandTokens =
-        List.of("luma-component", "original", "lumaResult");
+    List<String> commandTokens = List.of("luma-component", "original", "lumaResult");
     model.operationsFactoryCall("luma-component", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("lumaResult");
@@ -300,24 +266,16 @@ public class ModelTest {
    */
   @Test
   public void testPixelIntensityTransformation() {
-    PixelInterface[][] originalPixels = {
-        {new Pixel(255, 0, 0, 255),
-            new Pixel(0, 255, 0, 255)},
-        {new Pixel(0, 0, 255, 255),
-            new Pixel(255, 255, 255, 255)}};
+    PixelInterface[][] originalPixels = {{new Pixel(255, 0, 0, 255), new Pixel(0, 255, 0, 255)},
+        {new Pixel(0, 0, 255, 255), new Pixel(255, 255, 255, 255)}};
 
-    PixelInterface[][] expectedPixels = {
-        {new Pixel(85, 85, 85, 255),
-            new Pixel(85, 85, 85, 255)},
-        {new Pixel(85, 85, 85, 255),
-            new Pixel(255, 255, 255, 255)}};
+    PixelInterface[][] expectedPixels = {{new Pixel(85, 85, 85, 255), new Pixel(85, 85, 85, 255)},
+        {new Pixel(85, 85, 85, 255), new Pixel(255, 255, 255, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
 
-    Image expectedImage =
-        new Image(expectedPixels.length, expectedPixels[0].length);
+    Image expectedImage = new Image(expectedPixels.length, expectedPixels[0].length);
     expectedImage.imageFill(expectedPixels);
 
     ModelInterface model = new Model();
@@ -325,8 +283,7 @@ public class ModelTest {
     model.storeImage("original", originalImage);
 
     /* intensity-component manas manas-intensity */
-    List<String> commandTokens =
-        List.of("intensity-component", "original", "intensityResult");
+    List<String> commandTokens = List.of("intensity-component", "original", "intensityResult");
     model.operationsFactoryCall("intensity-component", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("intensityResult");
@@ -343,49 +300,40 @@ public class ModelTest {
   @Test
   public void testRgbSplit() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedRedSplit = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(50, 50, 50, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(200, 200, 200, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(50, 50, 50, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(200, 200, 200, 255)}};
 
     PixelInterface[][] expectedGreenSplit = {
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(100, 100, 100, 255)},
-        {new Pixel(50, 50, 50, 255),
-            new Pixel(220, 220, 220, 255)}};
+        {new Pixel(150, 150, 150, 255), new Pixel(100, 100, 100, 255)},
+        {new Pixel(50, 50, 50, 255), new Pixel(220, 220, 220, 255)}};
 
     PixelInterface[][] expectedBlueSplit = {
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(240, 240, 240, 255)}};
+        {new Pixel(200, 200, 200, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(100, 100, 100, 255), new Pixel(240, 240, 240, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedRedSplitImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedRedSplitImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedRedSplitImage.imageFill(expectedRedSplit);
 
-    ImageInterface expectedGreenSplitImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedGreenSplitImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedGreenSplitImage.imageFill(expectedGreenSplit);
 
-    ImageInterface expectedBlueSplitImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedBlueSplitImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedBlueSplitImage.imageFill(expectedBlueSplit);
 
     /* intensity-component manas manas-intensity */
-    List<String> commandTokens = List.of(
-        "rgb-split", "original", "redResult", "greenResult", "blueResult");
+    List<String> commandTokens = List.of("rgb-split", "original", "redResult", "greenResult",
+        "blueResult");
     model.operationsFactoryCall("rgb-split", commandTokens, model);
 
     ImageInterface redSplitImage = model.getImage("redResult");
@@ -406,29 +354,23 @@ public class ModelTest {
   @Test
   public void testGetRedComponent() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedRedComponent = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(50, 50, 50, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(200, 200, 200, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(50, 50, 50, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(200, 200, 200, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedRedComponentImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedRedComponentImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedRedComponentImage.imageFill(expectedRedComponent);
 
     /* red-component manas manas-red */
-    List<String> commandTokens =
-        List.of("red-component", "original", "redComponentResult");
+    List<String> commandTokens = List.of("red-component", "original", "redComponentResult");
     model.operationsFactoryCall("red-component", commandTokens, model);
     ImageInterface transformedImage = model.getImage("redComponentResult");
     assertEquals(expectedRedComponentImage, transformedImage);
@@ -443,29 +385,23 @@ public class ModelTest {
   @Test
   public void testGetGreenComponent() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedGreenComponent = {
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(100, 100, 100, 255)},
-        {new Pixel(50, 50, 50, 255),
-            new Pixel(220, 220, 220, 255)}};
+        {new Pixel(150, 150, 150, 255), new Pixel(100, 100, 100, 255)},
+        {new Pixel(50, 50, 50, 255), new Pixel(220, 220, 220, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedGreenComponentImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedGreenComponentImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedGreenComponentImage.imageFill(expectedGreenComponent);
 
     /* green-component manas manas-green */
-    List<String> commandTokens =
-        List.of("green-component", "original", "greenComponentResult");
+    List<String> commandTokens = List.of("green-component", "original", "greenComponentResult");
     model.operationsFactoryCall("green-component", commandTokens, model);
     ImageInterface transformedImage = model.getImage("greenComponentResult");
 
@@ -481,29 +417,23 @@ public class ModelTest {
   @Test
   public void testBlueComponent() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedBlueComponent = {
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(240, 240, 240, 255)}};
+        {new Pixel(200, 200, 200, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(100, 100, 100, 255), new Pixel(240, 240, 240, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedBlueComponentImage = new Image(
-        expectedBlueComponent.length, expectedBlueComponent[0].length);
+    ImageInterface expectedBlueComponentImage = new Image(expectedBlueComponent.length,
+        expectedBlueComponent[0].length);
     expectedBlueComponentImage.imageFill(expectedBlueComponent);
 
     /* green-component manas manas-green */
-    List<String> commandTokens =
-        List.of("blue-component", "original", "blueComponentResult");
+    List<String> commandTokens = List.of("blue-component", "original", "blueComponentResult");
     model.operationsFactoryCall("blue-component", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("blueComponentResult");
@@ -519,29 +449,23 @@ public class ModelTest {
   @Test
   public void testVerticalFlip() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedFlippedPixels = {
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)},
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)}};
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)},
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedFlippedPixelsImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedFlippedPixelsImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedFlippedPixelsImage.imageFill(expectedFlippedPixels);
 
     /* green-component manas manas-green */
-    List<String> commandTokens =
-        List.of("vertical-flip", "original", "verticalFlippedResult");
+    List<String> commandTokens = List.of("vertical-flip", "original", "verticalFlippedResult");
     model.operationsFactoryCall("vertical-flip", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("verticalFlippedResult");
@@ -557,27 +481,21 @@ public class ModelTest {
   @Test
   public void testHorizontalFlip() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedFlippedPixels = {
-        {new Pixel(50, 100, 150, 255),
-            new Pixel(100, 150, 200, 255)},
-        {new Pixel(200, 220, 240, 255),
-            new Pixel(0, 50, 100, 255)}};
+        {new Pixel(50, 100, 150, 255), new Pixel(100, 150, 200, 255)},
+        {new Pixel(200, 220, 240, 255), new Pixel(0, 50, 100, 255)}};
 
-    ImageInterface expectedFlippedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedFlippedImage = new Image(originalPixels.length,
+        originalPixels[0].length);
     expectedFlippedImage.imageFill(expectedFlippedPixels);
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    List<String> commandTokens =
-        List.of("horizontal-flip", "original", "horizontalFlippedResult");
+    List<String> commandTokens = List.of("horizontal-flip", "original", "horizontalFlippedResult");
     model.operationsFactoryCall("horizontal-flip", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("horizontalFlippedResult");
@@ -593,28 +511,21 @@ public class ModelTest {
   @Test
   public void testGetValueComponent() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     PixelInterface[][] expectedValueComponent = {
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(240, 240, 240, 255)}};
+        {new Pixel(200, 200, 200, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(100, 100, 100, 255), new Pixel(240, 240, 240, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    ImageInterface expectedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface expectedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedImage.imageFill(expectedValueComponent);
 
-    List<String> commandTokens =
-        List.of("value-component", "original", "valueComponentResult");
+    List<String> commandTokens = List.of("value-component", "original", "valueComponentResult");
     model.operationsFactoryCall("value-component", commandTokens, model);
 
     ImageInterface transformedImage = model.getImage("valueComponentResult");
@@ -628,29 +539,18 @@ public class ModelTest {
    */
   @Test
   public void testRgbCombine() {
-    PixelInterface[][] redPixels = {
-        {new Pixel(100, 0, 0, 255),
-            new Pixel(50, 0, 0, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(200, 0, 0, 255)}};
+    PixelInterface[][] redPixels = {{new Pixel(100, 0, 0, 255), new Pixel(50, 0, 0, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(200, 0, 0, 255)}};
 
-    PixelInterface[][] greenPixels = {
-        {new Pixel(0, 150, 0, 255),
-            new Pixel(0, 100, 0, 255)},
-        {new Pixel(0, 50, 0, 255),
-            new Pixel(0, 220, 0, 255)}};
+    PixelInterface[][] greenPixels = {{new Pixel(0, 150, 0, 255), new Pixel(0, 100, 0, 255)},
+        {new Pixel(0, 50, 0, 255), new Pixel(0, 220, 0, 255)}};
 
-    PixelInterface[][] bluePixels = {
-        {new Pixel(0, 0, 200, 255),
-            new Pixel(0, 0, 150, 255)},
-        {new Pixel(0, 0, 100, 255),
-            new Pixel(0, 0, 240, 255)}};
+    PixelInterface[][] bluePixels = {{new Pixel(0, 0, 200, 255), new Pixel(0, 0, 150, 255)},
+        {new Pixel(0, 0, 100, 255), new Pixel(0, 0, 240, 255)}};
 
     PixelInterface[][] expectedCombinedPixels = {
-        {new Pixel(100, 150, 200, 255),
-            new Pixel(50, 100, 150, 255)},
-        {new Pixel(0, 50, 100, 255),
-            new Pixel(200, 220, 240, 255)}};
+        {new Pixel(100, 150, 200, 255), new Pixel(50, 100, 150, 255)},
+        {new Pixel(0, 50, 100, 255), new Pixel(200, 220, 240, 255)}};
 
     Image redImage = new Image(redPixels.length, redPixels[0].length);
     redImage.imageFill(redPixels);
@@ -664,8 +564,7 @@ public class ModelTest {
     blueImage.imageFill(bluePixels);
     model.storeImage("blue", blueImage);
 
-    List<String> commandTokens =
-        List.of("rgb-combine", "combinedResult", "red", "green", "blue");
+    List<String> commandTokens = List.of("rgb-combine", "combinedResult", "red", "green", "blue");
     model.operationsFactoryCall("rgb-combine", commandTokens, model);
 
     ImageInterface combinedImage = model.getImage("combinedResult");
@@ -680,24 +579,18 @@ public class ModelTest {
   @Test
   public void testBlurImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedBlurredPixels = {
-        {new Pixel(125, 125, 125, 255),
-            new Pixel(125, 125, 125, 255)},
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(100, 100, 100, 255)}};
+        {new Pixel(125, 125, 125, 255), new Pixel(125, 125, 125, 255)},
+        {new Pixel(150, 150, 150, 255), new Pixel(100, 100, 100, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedBlurredImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedBlurredImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedBlurredImage.imageFill(expectedBlurredPixels);
     List<String> commandTokens = List.of("blur", "original", "blurredResult");
     model.operationsFactoryCall("blur", commandTokens, model);
@@ -715,27 +608,20 @@ public class ModelTest {
   @Test
   public void testSharpenImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedSharpenedPixels = {
-        {new Pixel(106, 106, 106, 255),
-            new Pixel(144, 144, 144, 255)},
-        {new Pixel(206, 206, 206, 255),
-            new Pixel(44, 44, 44, 255)}};
+        {new Pixel(106, 106, 106, 255), new Pixel(144, 144, 144, 255)},
+        {new Pixel(206, 206, 206, 255), new Pixel(44, 44, 44, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedSharpenedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedSharpenedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedSharpenedImage.imageFill(expectedSharpenedPixels);
-    List<String> commandTokens =
-        List.of("sharpen", "original", "sharpenedResult");
+    List<String> commandTokens = List.of("sharpen", "original", "sharpenedResult");
     model.operationsFactoryCall("sharpen", commandTokens, model);
 
     ImageInterface sharpenedImage = model.getImage("sharpenedResult");
@@ -752,33 +638,25 @@ public class ModelTest {
   public void testCompressImage1() {
     /* 50% compression */
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedCompressedPixels = {
-        {new Pixel(75, 75, 75, 255),
-            new Pixel(175, 175, 175, 255)},
-        {new Pixel(175, 175, 175, 255),
-            new Pixel(75, 75, 75, 255)}};
+        {new Pixel(75, 75, 75, 255), new Pixel(175, 175, 175, 255)},
+        {new Pixel(175, 175, 175, 255), new Pixel(75, 75, 75, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedCompressedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedCompressedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedCompressedImage.imageFill(expectedCompressedPixels);
-    List<String> commandTokens =
-        List.of("compress", "50", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "50", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
 
     ImageInterface compressedImage = model.getImage("compressedResult");
 
-    assertImagesEqual(
-        expectedCompressedPixels, compressedImage, "compressedResult");
+    assertImagesEqual(expectedCompressedPixels, compressedImage, "compressedResult");
   }
 
   /**
@@ -788,33 +666,25 @@ public class ModelTest {
   public void testCompressImage2() {
     /* 0% compression, same image test */
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedCompressedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedCompressedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedCompressedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedCompressedImage.imageFill(expectedCompressedPixels);
-    List<String> commandTokens =
-        List.of("compress", "0", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "0", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
 
     ImageInterface compressedImage = model.getImage("compressedResult");
 
-    assertImagesEqual(
-        expectedCompressedPixels, compressedImage, "compressedResult");
+    assertImagesEqual(expectedCompressedPixels, compressedImage, "compressedResult");
   }
 
   /**
@@ -824,33 +694,25 @@ public class ModelTest {
   public void testCompressImage3() {
     /* 100% compression zeros out image test */
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedCompressedPixels = {
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(0, 0, 0, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(0, 0, 0, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedCompressedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedCompressedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedCompressedImage.imageFill(expectedCompressedPixels);
-    List<String> commandTokens =
-        List.of("compress", "100", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "100", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
 
     ImageInterface compressedImage = model.getImage("compressedResult");
 
-    assertImagesEqual(
-        expectedCompressedPixels, compressedImage, "compressedResult");
+    assertImagesEqual(expectedCompressedPixels, compressedImage, "compressedResult");
   }
 
   /**
@@ -859,8 +721,7 @@ public class ModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void testCompressImage4() {
     /* invalid compression percentage, < 0 */
-    List<String> commandTokens =
-        List.of("compress", "-5", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "-5", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
   }
 
@@ -870,8 +731,7 @@ public class ModelTest {
   @Test(expected = IllegalArgumentException.class)
   public void testCompressImage5() {
     /* invalid compression percentage, > 100 */
-    List<String> commandTokens =
-        List.of("compress", "101", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "101", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
   }
 
@@ -883,36 +743,25 @@ public class ModelTest {
     /* test for compression on image requiring padding, not of power of 2
      * dimensions */
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255),
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255),
             new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(150, 150, 150, 255)}};
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255), new Pixel(150, 150, 150, 255)}};
 
     PixelInterface[][] expectedCompressedPixels = {
-        {new Pixel(50, 50, 50, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(175, 175, 175, 255)},
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(175, 175, 175, 255)}};
+        {new Pixel(50, 50, 50, 255), new Pixel(150, 150, 150, 255), new Pixel(175, 175, 175, 255)},
+        {new Pixel(150, 150, 150, 255), new Pixel(50, 50, 50, 255), new Pixel(175, 175, 175, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedCompressedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedCompressedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedCompressedImage.imageFill(expectedCompressedPixels);
-    List<String> commandTokens =
-        List.of("compress", "50", "original", "compressedResult");
+    List<String> commandTokens = List.of("compress", "50", "original", "compressedResult");
     model.operationsFactoryCall("compress", commandTokens, model);
 
     ImageInterface compressedImage = model.getImage("compressedResult");
-    assertImagesEqual(
-        expectedCompressedPixels, compressedImage, "compressedResult");
+    assertImagesEqual(expectedCompressedPixels, compressedImage, "compressedResult");
   }
 
   /**
@@ -924,32 +773,24 @@ public class ModelTest {
   @Test
   public void testColorCorrectionImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] expectedColorCorrectedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedColorCorrectedImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedColorCorrectedImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedColorCorrectedImage.imageFill(expectedColorCorrectedPixels);
     /* color-correct manas manas-color-corrected */
-    List<String> commandTokens =
-        List.of("color-correct", "original", "colorCorrectedResult");
+    List<String> commandTokens = List.of("color-correct", "original", "colorCorrectedResult");
     model.operationsFactoryCall("color-correct", commandTokens, model);
 
-    ImageInterface colorCorrectedResult =
-        model.getImage("colorCorrectedResult");
+    ImageInterface colorCorrectedResult = model.getImage("colorCorrectedResult");
 
     assertEquals(expectedColorCorrectedImage, colorCorrectedResult);
   }
@@ -966,26 +807,21 @@ public class ModelTest {
   @Test
   public void testHistogramFilterImage() throws IOException {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
     /* histogram manas manas-histogram */
-    List<String> commandTokens =
-        List.of("histogram", "original", "histogramResult");
+    List<String> commandTokens = List.of("histogram", "original", "histogramResult");
     model.operationsFactoryCall("histogram", commandTokens, model);
 
     ImageInterface histogramResult = model.getImage("histogramResult");
-    Map<String, int[][]> actualImageMatrix =
-        convertImageToMapIntMatrix(histogramResult);
-    BufferedImage bufferedImage = loadBufferedImage("test/ime/model/"
-        + "testResources/histogram.png");
+    Map<String, int[][]> actualImageMatrix = convertImageToMapIntMatrix(histogramResult);
+    BufferedImage bufferedImage = loadBufferedImage(
+        "test/ime/model/" + "testResources/histogram.png");
     Map<String, int[][]> imagePixelArr = convertTo2DPixelArray(bufferedImage);
     assertTrue(compareImageMaps(imagePixelArr, actualImageMatrix));
   }
@@ -1000,27 +836,21 @@ public class ModelTest {
   public void testLevelAdjustImage1() {
     /* levels adjust all params within allowed range */
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
     PixelInterface[][] expectedLevelAdjustPixels = {
-        {new Pixel(92, 92, 92, 255),
-            new Pixel(135, 135, 135, 255)},
-        {new Pixel(165, 165, 165, 255),
-            new Pixel(38, 38, 38, 255)}};
+        {new Pixel(92, 92, 92, 255), new Pixel(135, 135, 135, 255)},
+        {new Pixel(165, 165, 165, 255), new Pixel(38, 38, 38, 255)}};
 
-    Image originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
-    Image expectedLevelAdjustImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    Image expectedLevelAdjustImage = new Image(originalPixels.length, originalPixels[0].length);
     expectedLevelAdjustImage.imageFill(expectedLevelAdjustPixels);
     /* levels-adjust 20 100 255 manas manas-levels-adjusted */
-    List<String> commandTokens = List.of(
-        CommandConstants.LEVELS_ADJUST, "20", "100", "255", "original", "levelAdjustedResult");
+    List<String> commandTokens = List.of(CommandConstants.LEVELS_ADJUST, "20", "100", "255",
+        "original", "levelAdjustedResult");
     model.operationsFactoryCall(CommandConstants.LEVELS_ADJUST, commandTokens, model);
 
     ImageInterface levelAdjustedResult = model.getImage("levelAdjustedResult");
@@ -1044,8 +874,9 @@ public class ModelTest {
     for (int i = 0; i < 3; i++) {
       for (String invalidValue : invalidRanges) {
         // Create a valid commandTokens template
-        List<String> commandTokens = new ArrayList<>(List.of(CommandConstants.LEVELS_ADJUST,
-            "50", "100", "255", "original", "levelAdjustedResult"));
+        List<String> commandTokens = new ArrayList<>(
+            List.of(CommandConstants.LEVELS_ADJUST, "50", "100", "255", "original",
+                "levelAdjustedResult"));
 
         // Replace the appropriate index for b, m, or w with invalid value
         commandTokens.set(i + 1, invalidValue);
@@ -1053,8 +884,8 @@ public class ModelTest {
         try {
           model.operationsFactoryCall(CommandConstants.LEVELS_ADJUST, commandTokens, model);
         } catch (IllegalArgumentException e) {
-          assertEquals("Invalid levels adjustment values. " +
-              "Ensure 0 <= b < m < w <= 255.", e.getMessage());
+          assertEquals("Invalid levels adjustment values. " + "Ensure 0 <= b < m < w <= 255.",
+              e.getMessage());
         }
       }
     }
@@ -1068,15 +899,11 @@ public class ModelTest {
   @Test
   public void testConvertAndStoreImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
-    Map<String, int[][]> imgPixelArr =
-        convertImageToMapIntMatrix(originalImage);
+    Map<String, int[][]> imgPixelArr = convertImageToMapIntMatrix(originalImage);
     model.convertAndStoreImage("original", imgPixelArr);
     ImageInterface fetchedImage = model.getImage("original");
     assertEquals(originalImage, fetchedImage);
@@ -1090,26 +917,17 @@ public class ModelTest {
   @Test
   public void testConvertAndFetchImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
-    Map<String, int[][]> originalImagePixelArray =
-        model.convertAndFetchImage("original");
-    Map<String, int[][]> imgPixelArr =
-        convertImageToMapIntMatrix(originalImage);
-    assertTrue(compareIntArrays(
-        originalImagePixelArray.get("red"), imgPixelArr.get("red")));
-    assertTrue(compareIntArrays(
-        originalImagePixelArray.get("green"), imgPixelArr.get("green")));
-    assertTrue(compareIntArrays(
-        originalImagePixelArray.get("blue"), imgPixelArr.get("blue")));
-    assertTrue(compareIntArrays(
-        originalImagePixelArray.get("alpha"), imgPixelArr.get("alpha")));
+    Map<String, int[][]> originalImagePixelArray = model.convertAndFetchImage("original");
+    Map<String, int[][]> imgPixelArr = convertImageToMapIntMatrix(originalImage);
+    assertTrue(compareIntArrays(originalImagePixelArray.get("red"), imgPixelArr.get("red")));
+    assertTrue(compareIntArrays(originalImagePixelArray.get("green"), imgPixelArr.get("green")));
+    assertTrue(compareIntArrays(originalImagePixelArray.get("blue"), imgPixelArr.get("blue")));
+    assertTrue(compareIntArrays(originalImagePixelArray.get("alpha"), imgPixelArr.get("alpha")));
   }
 
   /**
@@ -1119,10 +937,8 @@ public class ModelTest {
   @Test
   public void testHashCodeSameForSameImage() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     Image image1 = new Image(originalPixels.length, originalPixels[0].length);
     image1.imageFill(originalPixels);
@@ -1139,16 +955,12 @@ public class ModelTest {
   @Test
   public void testHashCodeDifferentForDifferentImage() {
     PixelInterface[][] originalPixels1 = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
 
     PixelInterface[][] originalPixels2 = {
-        {new Pixel(120, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(120, 100, 100, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255)}};
     Image image1 = new Image(originalPixels1.length, originalPixels1[0].length);
     image1.imageFill(originalPixels1);
 
@@ -1192,8 +1004,7 @@ public class ModelTest {
     return imgPixelArr;
   }
 
-  private BufferedImage loadBufferedImage(String imageFilePath)
-      throws IOException {
+  private BufferedImage loadBufferedImage(String imageFilePath) throws IOException {
     String fileType = "png";
     ImageReader reader = ImageReaderFactory.getReader(fileType);
     return reader.read(imageFilePath);
@@ -1204,17 +1015,14 @@ public class ModelTest {
    */
   @Test
   public void testBlurSplitView1() {
-    List<String> commandTokens =
-        List.of("blur", "original", "blurSplitResult", "split", "50");
+    List<String> commandTokens = List.of("blur", "original", "blurSplitResult", "split", "50");
     model.operationsFactoryCall("blur", commandTokens, model);
 
     ImageInterface blurredImage = model.getImage("blurSplitResult");
 
     PixelInterface[][] expectedBlurredPixels = {
-        {new Pixel(125, 125, 125, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(125, 125, 125, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(150, 150, 150, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedBlurredPixels, blurredImage, "Blur Split");
   }
@@ -1224,17 +1032,14 @@ public class ModelTest {
    */
   @Test
   public void testBlurSplitView2() {
-    List<String> commandTokens =
-        List.of("blur", "original", "blurSplitResult", "split", "75");
+    List<String> commandTokens = List.of("blur", "original", "blurSplitResult", "split", "75");
     model.operationsFactoryCall("blur", commandTokens, model);
 
     ImageInterface blurredImage = model.getImage("blurSplitResult");
 
     PixelInterface[][] expectedBlurredPixels = {
-        {new Pixel(125, 125, 125, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(150, 150, 150, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(125, 125, 125, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(150, 150, 150, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedBlurredPixels, blurredImage, "Blur Split");
   }
@@ -1244,17 +1049,15 @@ public class ModelTest {
    */
   @Test
   public void testSharpenSplitView1() {
-    List<String> commandTokens =
-        List.of("sharpen", "original", "sharpenSplitResult", "split", "50");
+    List<String> commandTokens = List.of("sharpen", "original", "sharpenSplitResult", "split",
+        "50");
     model.operationsFactoryCall("sharpen", commandTokens, model);
 
     ImageInterface sharpenedImage = model.getImage("sharpenSplitResult");
 
     PixelInterface[][] expectedSharpenedPixels = {
-        {new Pixel(106, 106, 106, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(206, 206, 206, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(106, 106, 106, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(206, 206, 206, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedSharpenedPixels, sharpenedImage, "Sharpen Split");
   }
@@ -1264,17 +1067,15 @@ public class ModelTest {
    */
   @Test
   public void testSharpenSplitView2() {
-    List<String> commandTokens =
-        List.of("sharpen", "original", "sharpenSplitResult", "split", "75");
+    List<String> commandTokens = List.of("sharpen", "original", "sharpenSplitResult", "split",
+        "75");
     model.operationsFactoryCall("sharpen", commandTokens, model);
 
     ImageInterface sharpenedImage = model.getImage("sharpenSplitResult");
 
     PixelInterface[][] expectedSharpenedPixels = {
-        {new Pixel(106, 106, 106, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(206, 206, 206, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(106, 106, 106, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(206, 206, 206, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedSharpenedPixels, sharpenedImage, "Sharpen Split");
   }
@@ -1284,17 +1085,14 @@ public class ModelTest {
    */
   @Test
   public void testSepiaSplitView1() {
-    List<String> commandTokens =
-        List.of("sepia", "original", "sepiaSplitResult", "split", "50");
+    List<String> commandTokens = List.of("sepia", "original", "sepiaSplitResult", "split", "50");
     model.operationsFactoryCall("sepia", commandTokens, model);
 
     ImageInterface sepiaImage = model.getImage("sepiaSplitResult");
 
     PixelInterface[][] expectedSepiaPixels = {
-        {new Pixel(135, 120, 93, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(255, 240, 187, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(135, 120, 93, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(255, 240, 187, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedSepiaPixels, sepiaImage, "Sepia Split");
   }
@@ -1304,17 +1102,14 @@ public class ModelTest {
    */
   @Test
   public void testSepiaSplitView2() {
-    List<String> commandTokens =
-        List.of("sepia", "original", "sepiaSplitResult", "split", "75");
+    List<String> commandTokens = List.of("sepia", "original", "sepiaSplitResult", "split", "75");
     model.operationsFactoryCall("sepia", commandTokens, model);
 
     ImageInterface sepiaImage = model.getImage("sepiaSplitResult");
 
     PixelInterface[][] expectedSepiaPixels = {
-        {new Pixel(135, 120, 93, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(255, 240, 187, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(135, 120, 93, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(255, 240, 187, 255), new Pixel(0, 0, 0, 255)}};
 
     assertImagesEqual(expectedSepiaPixels, sepiaImage, "Sepia Split");
   }
@@ -1324,20 +1119,17 @@ public class ModelTest {
    */
   @Test
   public void testGreyscaleSplitView1() {
-    List<String> commandTokens =
-        List.of("luma-component", "original", "lumaSplitResult", "split", "50");
+    List<String> commandTokens = List.of("luma-component", "original", "lumaSplitResult", "split",
+        "50");
     model.operationsFactoryCall("luma-component", commandTokens, model);
 
     ImageInterface greyscaleImage = model.getImage("lumaSplitResult");
 
     PixelInterface[][] greyscaleExpectedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        greyscaleExpectedPixels, greyscaleImage, "Greyscale Split");
+    assertImagesEqual(greyscaleExpectedPixels, greyscaleImage, "Greyscale Split");
   }
 
   /**
@@ -1345,20 +1137,17 @@ public class ModelTest {
    */
   @Test
   public void testGreyscaleSplitView2() {
-    List<String> commandTokens =
-        List.of("luma-component", "original", "lumaSplitResult", "split", "75");
+    List<String> commandTokens = List.of("luma-component", "original", "lumaSplitResult", "split",
+        "75");
     model.operationsFactoryCall("luma-component", commandTokens, model);
 
     ImageInterface greyscaleImage = model.getImage("lumaSplitResult");
 
     PixelInterface[][] greyscaleExpectedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        greyscaleExpectedPixels, greyscaleImage, "Greyscale Split");
+    assertImagesEqual(greyscaleExpectedPixels, greyscaleImage, "Greyscale Split");
   }
 
   /**
@@ -1366,20 +1155,17 @@ public class ModelTest {
    */
   @Test
   public void testColorCorrectionSplitView1() {
-    List<String> commandTokens = List.of(
-        "color-correct", "original", "colorCorrectSplitResult", "split", "50");
+    List<String> commandTokens = List.of("color-correct", "original", "colorCorrectSplitResult",
+        "split", "50");
     model.operationsFactoryCall("color-correct", commandTokens, model);
 
     ImageInterface colorCorrected = model.getImage("colorCorrectSplitResult");
 
     PixelInterface[][] colorCorrectExpectedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        colorCorrectExpectedPixels, colorCorrected, "Color Correction Split");
+    assertImagesEqual(colorCorrectExpectedPixels, colorCorrected, "Color Correction Split");
   }
 
   /**
@@ -1387,20 +1173,17 @@ public class ModelTest {
    */
   @Test
   public void testColorCorrectionSplitView2() {
-    List<String> commandTokens = List.of(
-        "color-correct", "original", "colorCorrectSplitResult", "split", "75");
+    List<String> commandTokens = List.of("color-correct", "original", "colorCorrectSplitResult",
+        "split", "75");
     model.operationsFactoryCall("color-correct", commandTokens, model);
 
     ImageInterface colorCorrected = model.getImage("colorCorrectSplitResult");
 
     PixelInterface[][] colorCorrectExpectedPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(100, 100, 100, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        colorCorrectExpectedPixels, colorCorrected, "Color Correction Split");
+    assertImagesEqual(colorCorrectExpectedPixels, colorCorrected, "Color Correction Split");
   }
 
   /**
@@ -1408,20 +1191,17 @@ public class ModelTest {
    */
   @Test
   public void testLevelsAdjustmentSplitView1() {
-    List<String> commandTokens = List.of("levels-adjust", "20", "100", "255",
-        "original", "levelsAdjustSplitResult", "split", "50");
+    List<String> commandTokens = List.of("levels-adjust", "20", "100", "255", "original",
+        "levelsAdjustSplitResult", "split", "50");
     model.operationsFactoryCall("levels-adjust", commandTokens, model);
 
     ImageInterface levelsAdjusted = model.getImage("levelsAdjustSplitResult");
 
     PixelInterface[][] levelsAdjustExpectedPixels = {
-        {new Pixel(92, 92, 92, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(165, 165, 165, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(92, 92, 92, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(165, 165, 165, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        levelsAdjustExpectedPixels, levelsAdjusted, "Levels Adjustment Split");
+    assertImagesEqual(levelsAdjustExpectedPixels, levelsAdjusted, "Levels Adjustment Split");
   }
 
   /**
@@ -1429,20 +1209,17 @@ public class ModelTest {
    */
   @Test
   public void testLevelsAdjustmentSplitView2() {
-    List<String> commandTokens = List.of("levels-adjust", "20", "100", "255",
-        "original", "levelsAdjustSplitResult", "split", "75");
+    List<String> commandTokens = List.of("levels-adjust", "20", "100", "255", "original",
+        "levelsAdjustSplitResult", "split", "75");
     model.operationsFactoryCall("levels-adjust", commandTokens, model);
 
     ImageInterface levelsAdjusted = model.getImage("levelsAdjustSplitResult");
 
     PixelInterface[][] levelsAdjustExpectedPixels = {
-        {new Pixel(92, 92, 92, 255),
-            new Pixel(0, 0, 0, 255)},
-        {new Pixel(165, 165, 165, 255),
-            new Pixel(0, 0, 0, 255)}};
+        {new Pixel(92, 92, 92, 255), new Pixel(0, 0, 0, 255)},
+        {new Pixel(165, 165, 165, 255), new Pixel(0, 0, 0, 255)}};
 
-    assertImagesEqual(
-        levelsAdjustExpectedPixels, levelsAdjusted, "Levels Adjustment Split");
+    assertImagesEqual(levelsAdjustExpectedPixels, levelsAdjusted, "Levels Adjustment Split");
   }
 
   /**
@@ -1464,12 +1241,10 @@ public class ModelTest {
       operationToCommandTokens.put("sepia",
           List.of("sepia", "original", "sepiaSplitResult", "split", item));
       operationToCommandTokens.put(CommandConstants.LUMA_COMPONENT,
-          List.of(
-              CommandConstants.LUMA_COMPONENT,
-              "original", "lumaSplitResult", "split", item));
+          List.of(CommandConstants.LUMA_COMPONENT, "original", "lumaSplitResult", "split", item));
       operationToCommandTokens.put(CommandConstants.COLOR_CORRECT,
-          List.of(CommandConstants.COLOR_CORRECT, "original", "colorCorrectSplitResult",
-              "split", item));
+          List.of(CommandConstants.COLOR_CORRECT, "original", "colorCorrectSplitResult", "split",
+              item));
       operationToCommandTokens.put(CommandConstants.LEVELS_ADJUST,
           List.of(CommandConstants.LEVELS_ADJUST, "20", "100", "255", "original",
               "levelsAdjustSplitResult", "split", item));
@@ -1478,8 +1253,7 @@ public class ModelTest {
         try {
           model.operationsFactoryCall(operation, commandTokens, model);
         } catch (IllegalArgumentException E) {
-          assertEquals(
-              "Split percent must be between 0 and 100", E.getMessage());
+          assertEquals("Split percent must be between 0 and 100", E.getMessage());
         }
       });
     });
@@ -1497,18 +1271,16 @@ public class ModelTest {
     String item = "0";
     /* all operations that can be done with split percentage */
     Map<String, List<String>> operationToCommandTokens = new HashMap<>();
-    operationToCommandTokens.put(
-        "blur", List.of("blur", "original", "blur", "split", item));
-    operationToCommandTokens.put(
-        "sharpen", List.of("sharpen", "original", "sharpen", "split", item));
-    operationToCommandTokens.put(
-        "sepia", List.of("sepia", "original", "sepia", "split", item));
+    operationToCommandTokens.put("blur", List.of("blur", "original", "blur", "split", item));
+    operationToCommandTokens.put("sharpen",
+        List.of("sharpen", "original", "sharpen", "split", item));
+    operationToCommandTokens.put("sepia", List.of("sepia", "original", "sepia", "split", item));
     operationToCommandTokens.put(CommandConstants.LUMA_COMPONENT,
-        List.of(CommandConstants.LUMA_COMPONENT, "original",
-            CommandConstants.LUMA_COMPONENT, "split", item));
+        List.of(CommandConstants.LUMA_COMPONENT, "original", CommandConstants.LUMA_COMPONENT,
+            "split", item));
     operationToCommandTokens.put("color-correct",
-        List.of(CommandConstants.COLOR_CORRECT, "original",
-            CommandConstants.COLOR_CORRECT, "split", item));
+        List.of(CommandConstants.COLOR_CORRECT, "original", CommandConstants.COLOR_CORRECT, "split",
+            item));
     operationToCommandTokens.put(CommandConstants.LEVELS_ADJUST,
         List.of(CommandConstants.LEVELS_ADJUST, "20", "100", "255", "original",
             CommandConstants.LEVELS_ADJUST, "split", item));
@@ -1517,13 +1289,10 @@ public class ModelTest {
     ImageInterface original = model.getImage("original");
 
     PixelInterface[][] expectedPixelsWithOutputLine = {
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(0, 0, 0, 255),
-            new Pixel(50, 50, 50, 255)}};
+        {new Pixel(0, 0, 0, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(0, 0, 0, 255), new Pixel(50, 50, 50, 255)}};
 
-    ImageInterface expectedOutput =
-        new Image(original.getHeight(), original.getWidth());
+    ImageInterface expectedOutput = new Image(original.getHeight(), original.getWidth());
     expectedOutput.imageFill(expectedPixelsWithOutputLine);
     /* asserting that the original & output images same for every split
      * operation, with 0 %split */
@@ -1546,18 +1315,16 @@ public class ModelTest {
     String item = "100";
     /* all operations that can be done with split percentage */
     Map<String, List<String>> operationToCommandTokens = new HashMap<>();
-    operationToCommandTokens.put(
-        "blur", List.of("blur", "original", "blur", "split", item));
-    operationToCommandTokens.put(
-        "sharpen", List.of("sharpen", "original", "sharpen", "split", item));
-    operationToCommandTokens.put(
-        "sepia", List.of("sepia", "original", "sepia", "split", item));
+    operationToCommandTokens.put("blur", List.of("blur", "original", "blur", "split", item));
+    operationToCommandTokens.put("sharpen",
+        List.of("sharpen", "original", "sharpen", "split", item));
+    operationToCommandTokens.put("sepia", List.of("sepia", "original", "sepia", "split", item));
     operationToCommandTokens.put(CommandConstants.LUMA_COMPONENT,
-        List.of(CommandConstants.LUMA_COMPONENT, "original",
-            CommandConstants.LUMA_COMPONENT, "split", item));
+        List.of(CommandConstants.LUMA_COMPONENT, "original", CommandConstants.LUMA_COMPONENT,
+            "split", item));
     operationToCommandTokens.put(CommandConstants.COLOR_CORRECT,
-        List.of(CommandConstants.COLOR_CORRECT, "original",
-            CommandConstants.COLOR_CORRECT, "split", item));
+        List.of(CommandConstants.COLOR_CORRECT, "original", CommandConstants.COLOR_CORRECT, "split",
+            item));
     operationToCommandTokens.put(CommandConstants.LEVELS_ADJUST,
         List.of(CommandConstants.LEVELS_ADJUST, "20", "100", "255", "original",
             CommandConstants.LEVELS_ADJUST, "split", item));
@@ -1565,10 +1332,8 @@ public class ModelTest {
     /* fetching the original image */
     ImageInterface original = model.getImage("original");
 
-    ImageInterface expectedOutput =
-        new Image(original.getHeight(), original.getWidth());
-    Map<String, PixelInterface[][]> expectedPixelsWithSplitLine =
-        getExpectedPixelsWithSplitLine();
+    ImageInterface expectedOutput = new Image(original.getHeight(), original.getWidth());
+    Map<String, PixelInterface[][]> expectedPixelsWithSplitLine = getExpectedPixelsWithSplitLine();
 
     // Loop through each operation and assert correctness
     for (Map.Entry<String, List<String>> entry : operationToCommandTokens.entrySet()) {
@@ -1581,8 +1346,7 @@ public class ModelTest {
 
       // Explicit assertion for static analysis tools
       assertEquals(
-          "The output image for operation " + operation +
-              " does not match the expected output.",
+          "The output image for operation " + operation + " does not match the expected output.",
           expectedOutput, outputImage);
     }
   }
@@ -1595,8 +1359,7 @@ public class ModelTest {
    */
   @Test
   public void testDownscaling1() {
-    List<String> commandTokens =
-        List.of("downscale", "2", "2", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "2", "2", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
     ImageInterface downscaledImage = model.getImage("downscaleResult");
     assertEquals(originalImage, downscaledImage);
@@ -1609,14 +1372,11 @@ public class ModelTest {
    */
   @Test
   public void testDownscaling2() {
-    PixelInterface[][] downscaledPixels = {
-        {new Pixel(100, 100, 100, 255)},
+    PixelInterface[][] downscaledPixels = {{new Pixel(100, 100, 100, 255)},
         {new Pixel(200, 200, 200, 255)}};
-    ImageInterface expectedImage =
-        new Image(downscaledPixels.length, downscaledPixels[0].length);
+    ImageInterface expectedImage = new Image(downscaledPixels.length, downscaledPixels[0].length);
     expectedImage.imageFill(downscaledPixels);
-    List<String> commandTokens =
-        List.of("downscale", "1", "2", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "1", "2", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
     ImageInterface downscaledImage = model.getImage("downscaleResult");
     assertEquals(expectedImage, downscaledImage);
@@ -1630,13 +1390,10 @@ public class ModelTest {
   @Test
   public void testDownscaling3() {
     PixelInterface[][] downscaledPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255)}};
-    ImageInterface expectedImage =
-        new Image(downscaledPixels.length, downscaledPixels[0].length);
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255)}};
+    ImageInterface expectedImage = new Image(downscaledPixels.length, downscaledPixels[0].length);
     expectedImage.imageFill(downscaledPixels);
-    List<String> commandTokens =
-        List.of("downscale", "2", "1", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "2", "1", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
     ImageInterface downscaledImage = model.getImage("downscaleResult");
     assertEquals(expectedImage, downscaledImage);
@@ -1649,15 +1406,13 @@ public class ModelTest {
    */
   @Test
   public void testDownscaling4() {
-    List<String> commandTokens =
-        List.of("downscale", "1", "1", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "1", "1", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
 
     ImageInterface downscaledImage = model.getImage("downscaleResult");
 
     PixelInterface[][] downscaledPixels = {{new Pixel(100, 100, 100, 255)}};
-    ImageInterface expectedImage =
-        new Image(downscaledPixels.length, downscaledPixels[0].length);
+    ImageInterface expectedImage = new Image(downscaledPixels.length, downscaledPixels[0].length);
     expectedImage.imageFill(downscaledPixels);
     assertEquals(expectedImage, downscaledImage);
   }
@@ -1669,8 +1424,7 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling5() {
-    List<String> commandTokens =
-        List.of("downscale", "-1", "1", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "-1", "1", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
   }
 
@@ -1681,8 +1435,7 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling6() {
-    List<String> commandTokens =
-        List.of("downscale", "1", "-1", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "1", "-1", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
   }
 
@@ -1693,8 +1446,7 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling7() {
-    List<String> commandTokens =
-        List.of("downscale", "3", "2", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "3", "2", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
   }
 
@@ -1705,8 +1457,7 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling8() {
-    List<String> commandTokens =
-        List.of("downscale", "2", "3", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "2", "3", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
   }
 
@@ -1718,44 +1469,27 @@ public class ModelTest {
   @Test
   public void testDownscaling9() {
     PixelInterface[][] originalPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255),
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255),
+            new Pixel(150, 150, 150, 255), new Pixel(150, 150, 150, 255),
             new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255)}};
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255), new Pixel(50, 50, 50, 255),
+            new Pixel(150, 150, 150, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255), new Pixel(50, 50, 50, 255),
+            new Pixel(150, 150, 150, 255), new Pixel(150, 150, 150, 255)}};
 
-    ImageInterface originalImage =
-        new Image(originalPixels.length, originalPixels[0].length);
+    ImageInterface originalImage = new Image(originalPixels.length, originalPixels[0].length);
     originalImage.imageFill(originalPixels);
     model.storeImage("original", originalImage);
 
     PixelInterface[][] downscaledPixels = {
-        {new Pixel(100, 100, 100, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(150, 150, 150, 255),
+        {new Pixel(100, 100, 100, 255), new Pixel(150, 150, 150, 255),
+            new Pixel(150, 150, 150, 255), new Pixel(150, 150, 150, 255),
             new Pixel(150, 150, 150, 255)},
-        {new Pixel(200, 200, 200, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(50, 50, 50, 255),
-            new Pixel(150, 150, 150, 255),
-            new Pixel(0, 0, 0, 255)},
-    };
-    ImageInterface expectedImage =
-        new Image(downscaledPixels.length, downscaledPixels[0].length);
+        {new Pixel(200, 200, 200, 255), new Pixel(50, 50, 50, 255), new Pixel(50, 50, 50, 255),
+            new Pixel(150, 150, 150, 255), new Pixel(0, 0, 0, 255)},};
+    ImageInterface expectedImage = new Image(downscaledPixels.length, downscaledPixels[0].length);
     expectedImage.imageFill(downscaledPixels);
-    List<String> commandTokens =
-        List.of("downscale", "5", "2", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "5", "2", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
     ImageInterface downscaledImage = model.getImage("downscaleResult");
     assertEquals(expectedImage, downscaledImage);
@@ -1767,8 +1501,7 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling10() {
-    List<String> commandTokens =
-        List.of("downscale", "2", "0", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "2", "0", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
   }
 
@@ -1778,8 +1511,35 @@ public class ModelTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testDownscaling11() {
-    List<String> commandTokens =
-        List.of("downscale", "0", "1", "original", "downscaleResult");
+    List<String> commandTokens = List.of("downscale", "0", "1", "original", "downscaleResult");
     model.operationsFactoryCall("downscale", commandTokens, model);
+  }
+
+  /**
+   * Test for Dithering operation with a 2x2 image.
+   */
+  @Test
+  public void testDithering1() {
+    List<String> commandTokens = List.of("dither", "original", "ditherResult");
+    model.operationsFactoryCall("dither", commandTokens, model);
+    ImageInterface ditheredImage = model.getImage("ditherResult");
+    PixelInterface[][] expectedDitheredPixels = {
+        {new Pixel(0, 0, 0, 255), new Pixel(255, 255, 255, 255)},
+        {new Pixel(255, 255, 255, 255), new Pixel(0, 0, 0, 255)}};
+    assertImagesEqual(expectedDitheredPixels, ditheredImage, "Dithering");
+  }
+
+  /**
+   * Test for Dithering operation with a 2x2 image. with split view at 50%.
+   */
+  @Test
+  public void testDitheringSplitView1() {
+    List<String> commandTokens = List.of("dither", "original", "ditherSplitResult", "split", "50");
+    model.operationsFactoryCall("dither", commandTokens, model);
+    ImageInterface ditheredImage = model.getImage("ditherSplitResult");
+    PixelInterface[][] expectedDitheredPixels = {
+        {new Pixel(0, 0, 0, 255), new Pixel(150, 150, 150, 255)},
+        {new Pixel(255, 255, 255, 255), new Pixel(50, 50, 50, 255)}};
+    assertImagesEqual(expectedDitheredPixels, ditheredImage, "Dithering Split");
   }
 }
