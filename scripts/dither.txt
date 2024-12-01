@@ -1,0 +1,4 @@
+# Load the image
+load res/Manas.png manas
+dither manas manas-dither
+save res/manas.png manas-dither
