@@ -408,6 +408,11 @@ public class GUIController implements GUIControllerInterface, GUIFeaturesInterfa
         currentImageName);
   }
 
+  /**
+   * Applies the dither operation to the current image. This method creates a new dithered version
+   * of the current image. And passes the args to the splitView method which creates a new window
+   * for previewing the dithered image.
+   */
   @Override
   public void dither() {
     List<String> args = new ArrayList<>();

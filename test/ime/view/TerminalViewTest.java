@@ -1,10 +1,9 @@
 package ime.view;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 /**
  * Unit tests for the TerminalView class. These tests verify the behavior of methods in the

@@ -33,5 +33,7 @@ public class CommandConstants {
   public static final String LEVELS_ADJUST = "levels-adjust";
   public static final String COMPRESS = "compress";
   public static final String DOWNSCALE = "downscale";
+  // THIS IS A NEW CONSTANT added for Dithering, this is just used for identifying
+  // the dither command across the program
   public static final String DITHER = "dither";
 }

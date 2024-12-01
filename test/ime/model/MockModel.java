@@ -1,10 +1,10 @@
 package ime.model;
 
+import static ime.controller.ControllerTestConstants.FETCHED_IMAGE_MATRICES;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-
-import static ime.controller.ControllerTestConstants.FETCHED_IMAGE_MATRICES;
 
 /**
  * A mock implementation of the used for testing purposes. This class records method invocations

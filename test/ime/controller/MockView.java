@@ -1,8 +1,7 @@
 package ime.controller;
 
-import java.util.List;
-
 import ime.view.ViewInterface;
+import java.util.List;
 
 /**
  * A mock implementation of the {@link ViewInterface} used for testing. This class records method

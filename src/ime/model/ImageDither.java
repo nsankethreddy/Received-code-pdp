@@ -2,16 +2,33 @@ package ime.model;
 
 import java.util.List;
 
+/**
+ * This class implements image dithering functionality, extending AbstractFilters. It applies the
+ * dithering algorithm to create a black and white image effect.
+ */
 public class ImageDither extends AbstractFilters {
 
   private final ModelInterface model;
-  private final ImageTransformation transformation;
 
+  /**
+   * Constructs an ImageDither object.
+   *
+   * @param model The ModelInterface object used to interact with the image data.
+   */
   public ImageDither(ModelInterface model) {
     this.model = model;
-    this.transformation = new ImageTransformation();
   }
 
+  /**
+   * Executes the dithering operation on a specified image. This method performs the following
+   * steps: 1. Extracts necessary information from the command tokens. 2. Retrieves the original
+   * image from the model. 3. Creates an intensity component of the original image. 4. Applies the
+   * dithering algorithm. 5. Creates a split image combining the original and dithered versions. 6.
+   * Stores the resulting image in the model.
+   *
+   * @param commandTokens A list of strings containing the command and its parameters. Expected
+   *                      format: [command, sourceImageName, destinationImageName, splitPercentage]
+   */
   @Override
   public void execute(List<String> commandTokens) {
     String imageName = commandTokens.get(1);
@@ -69,7 +86,15 @@ public class ImageDither extends AbstractFilters {
     model.storeImage(destName, splitDitherImage);
   }
 
-
+  /**
+   * Creates a split image combining the original and dithered versions. The split point is
+   * determined by the splitPercent parameter.
+   *
+   * @param originalImage  The original image.
+   * @param ditheringImage The dithered version of the image.
+   * @param splitPercent   The percentage of the image width where the split should occur.
+   * @return A new ImageInterface object representing the split image.
+   */
   private ImageInterface getSplitImage(ImageInterface originalImage, ImageInterface ditheringImage,
       int splitPercent) {
     int height = originalImage.getHeight();
@@ -97,5 +122,4 @@ public class ImageDither extends AbstractFilters {
     splitImage.imageFill(splitPixels);
     return splitImage;
   }
-
 }

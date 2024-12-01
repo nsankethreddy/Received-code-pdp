@@ -1,13 +1,12 @@
 package ime.controller;
 
+import ime.controller.gui.GUIControllerInterface;
+import ime.controller.gui.GUIFeaturesInterface;
+import ime.view.gui.GraphicalIMEInterface;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
-
-import ime.controller.gui.GUIControllerInterface;
-import ime.controller.gui.GUIFeaturesInterface;
-import ime.view.gui.GraphicalIMEInterface;
 
 /**
  * This is the mock class for the gui view.

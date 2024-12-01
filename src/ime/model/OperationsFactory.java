@@ -49,6 +49,8 @@ class OperationsFactory {
     commandActions.put(CommandConstants.LEVELS_ADJUST, new LevelsAdjustFilter(model));
     commandActions.put(CommandConstants.COMPRESS, new Compress(model));
     commandActions.put(CommandConstants.DOWNSCALE, new ImageDownscaling(model));
+
+    // Adds the ImageDither filter to the commandActions map with the DITHER command constant
     commandActions.put(CommandConstants.DITHER, new ImageDither(model));
   }
 

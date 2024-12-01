@@ -71,6 +71,7 @@ public class CommandValidator {
         break;
       case CommandConstants.DOWNSCALE:
         break;
+      // Add a new case for the dither command
       case CommandConstants.DITHER:
         validateDither(tokens);
         break;
@@ -207,6 +208,12 @@ public class CommandValidator {
     }
   }
 
+  /**
+   * Validates the dither command and its arguments.
+   *
+   * @param tokens the command tokens to validate
+   * @throws IllegalArgumentException if the number of arguments is incorrect
+   */
   private static void validateDither(List<String> tokens) {
     if (tokens.size() != 3) {
       throw new IllegalArgumentException("dither command requires 2 arguments");
