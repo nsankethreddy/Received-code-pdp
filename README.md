@@ -262,3 +262,49 @@ The `Manas.jpeg` and `Manas.png` image used for testing is an original photograp
 project team and
 authorized for use in this project.
 
+
+
+
+------
+
+# Dithering Implementation
+
+## Files Modified
+
+### 1. `src/ime/CommandConstants.java`
+- **Changes**:
+   - Added a new constant `DITHER` to identify the dithering command across the application.
+- **Purpose**:
+   - Provide a unique identifier for the dithering operation.
+
+### 2. `src/ime/controller/CommandValidator.java`
+- **Changes**:
+   - Added a validation method `validateDither()`.
+   - Updated the command switch statement to include dithering validation.
+- **Purpose**:
+   - Ensure the dither command is properly validated before execution.
+
+### 3. `src/ime/controller/gui/GUIController.java`
+- **Changes**:
+   - Implemented a new `dither()` method.
+- **Purpose**:
+   - Create a method to trigger the dithering process from the GUI.
+   - Prepares arguments for the dithering operation.
+   - Calls `splitView()` to display the processed image on the preview window.
+
+### 4. `src/ime/model/OperationsFactory.java`
+- **Changes**:
+   - Added the `ImageDither` to the `commandActions` map.
+- **Purpose**:
+   - Register the dithering operation in the application's command processing system.
+
+### 5. `src/ime/model/ImageDither.java`
+- **Changes**:
+   - Created a new class to implement the dithering functionality.
+   - Extends `AbstractFilters`.
+   - Implements the `execute()` method for performing the dithering operation.
+   - Includes a custom `getSplitImage()` method.
+- **Problem**:
+   - The existing split view implementation was tightly coupled with specific features.
+- **Solution**:
+   - Reimplemented a separate split view method (`getSplitImage()`) in the `ImageDither` class.
