@@ -418,6 +418,18 @@ public class ControllerTest {
   }
 
   /**
+   * Tests that an {@link IllegalArgumentException} is thrown when the "dither" command is used
+   * without the required two images.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void invalidDitherCommandWithoutProperArgs() throws IOException {
+    String runScriptString = "dither";
+    inputReader = new StringReader(runScriptString); /* Simulated user input */
+    controller = new Controller(inputReader, mockView, mockModel);
+    controller.run(); /* Execute the controller */
+  }
+
+  /**
    * Tests that an {@link IllegalArgumentException} is thrown when the "brighten" command is used
    * without the required increment value.
    */

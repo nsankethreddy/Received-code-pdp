@@ -338,4 +338,24 @@ public class GuiControllerTestNoOps {
 
     assertEquals(expectedLog, log);
   }
+
+
+  /**
+   * Tests the behavior when attempting to dither an image with no image selected. Verifies that the
+   * relevant prompts are displayed, and no error occurs.
+   */
+  @Test
+  public void ditherTest1() {
+    mockView = new MockGuiView(log, null, "dither");
+    controller = new GUIController(mockModel, mockView);
+    controller.dither();
+
+    List<String> expectedLog = new ArrayList<String>() {
+      {
+        add("splitView(dither, [dither, controller_tests_image_ppm, controller_tests_image_ppm-dither], controller_tests_image_ppm)");
+      }
+    };
+
+    assertEquals(expectedLog, log);
+  }
 }
