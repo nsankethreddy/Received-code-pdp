@@ -1,4 +1,6 @@
-Implemented Dithering on the existing code, and the details are on the bottom of this file.
+Implemented Dithering on the existing code: Y
+
+(Details for Dithering is on the bottom of this file)
 
 # Image Manipulation and Enhancement (IME)
 
