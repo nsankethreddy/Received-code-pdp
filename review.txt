@@ -60,6 +60,12 @@ split, etc. This change is not fixed.
 an exception and exits the application. Saving an image to .txt file says as success and doesn't
 throw an error.
 
+8. Testcases failure: Many JUnit tests are failing and this is not fixed.
+
+9. Important bug related to PPM images: PPM images are of the 2D matrix each (row, col) contains
+3 integers which specify r,g,b values. The PPM writer in the given code doesn't write the image
+in the given format. It writes a single integer in a new line. This is not fixed.
+
 Design/code strengths
 
 1. Implemented previous and next version which is a great add-on.
