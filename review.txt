@@ -14,7 +14,23 @@ which are invalid. For example, enter a split percentage, etc. There should be a
 other form of input where the user can enter or specify the input value within a range which would
 make the user to perform fewer errors.
 
-4.
+4. Methods in ImageReaderFactory and ImageWriterFactory are public but instead should be protected.
+Moreover, both the classes only checks for ppm format and returns a standard reader/writer for other
+formats. This will be problematic if the image format is invalid. Similarly, most interfaces does
+not have access specifiers.
+
+5. Command validations: Commands validations are not handled correctly. For example, if the command
+blur <image-name> <output-image-name> xyz 10 is run, it executes the command successfully when it's
+an invalid command. Similarly, all command validations are not handled correctly. If the input of
+split percentage entered in terminal is out of range, then the program exits with an exception.
+
+6. Model has a method getImage which is problematic. Model is supposed to store the data and give
+the image data when requested with a given image name. Here, model is returning the Image itself
+(ImageInterface) and this object has a method imageFill which can update the image. So, the existing
+image can be easily modified as the images are not encapsulated. The controller has access to model,
+model can return ImageInterface object, and it has public method to update the image directly.
+
+7.
 
 Requested Changes
 
@@ -39,7 +55,8 @@ that is without loading an image, will throw an exception in the terminal and do
 application itself. This bug is not fixed.
 
 6. Running some invalid command in terminal or in script throws an exception and exits out of the
-application instead of gracefully showing an error. This change is not fixed.
+application instead of gracefully showing an error. This includes providing out of range input for
+split, etc. This change is not fixed.
 
 7. Loading and saving invalid images is not handled correctly. Example, loading a .txt file throws
 an exception and exits the application. Saving an image to .txt file says as success and doesn't
@@ -50,3 +67,6 @@ Design/code strengths
 1. Implemented previous and next version which is a great add-on.
 2. Implementation has a constants file which has some common messages. New messages can be added
 in this place and used.
+3. ImageChannelConstants class is used to keep the channel constants and reuse them wherever
+required. Although Enum could have been used here.
+4. Adding new functionalities in model is easy.
