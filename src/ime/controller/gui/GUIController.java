@@ -528,6 +528,9 @@ public class GUIController implements GUIControllerInterface, GUIFeaturesInterfa
 
   @Override
   public void windowClosing() throws IOException {
+    if (imageVersions.size() <= 0) {
+      return;
+    }
     gui.offerToSaveImage(this, imageVersions.get(versionIndex), fileExtension);
   }
 

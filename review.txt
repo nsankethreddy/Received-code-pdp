@@ -28,9 +28,7 @@ split percentage entered in terminal is out of range, then the program exits wit
 the image data when requested with a given image name. Here, model is returning the Image itself
 (ImageInterface) and this object has a method imageFill which can update the image. So, the existing
 image can be easily modified as the images are not encapsulated. The controller has access to model,
-model can return ImageInterface object, and it has public method to update the image directly.
-
-7.
+model can return ImageInterface object, and that has public method to update the image directly.
 
 Requested Changes
 
@@ -52,7 +50,7 @@ reduce the number of errors an user can commit. This was fixed upon request.
 
 5. Important bug related to exiting the application: In GUI view closing the application immediately
 that is without loading an image, will throw an exception in the terminal and doesn't close the
-application itself. This bug is not fixed.
+application itself. This bug fixed now.
 
 6. Running some invalid command in terminal or in script throws an exception and exits out of the
 application instead of gracefully showing an error. This includes providing out of range input for
