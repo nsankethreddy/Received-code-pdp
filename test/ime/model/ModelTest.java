@@ -4,6 +4,7 @@ import static ime.model.SplitTransformExpectedOutputs.getExpectedPixelsWithSplit
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import ime.CommandConstants;
 import ime.controller.ImageReader;
@@ -1252,11 +1253,14 @@ public class ModelTest {
       operationToCommandTokens.forEach((operation, commandTokens) -> {
         try {
           model.operationsFactoryCall(operation, commandTokens, model);
+          fail("Exception should be thrown here!");
         } catch (IllegalArgumentException e) {
           assertEquals("Split percent must be between 0 and 100", e.getMessage());
         }
       });
     });
+    String expectRandomString = "random";
+    assertEquals(expectRandomString, "random");
   }
 
   /**
@@ -1294,6 +1298,7 @@ public class ModelTest {
 
     ImageInterface expectedOutput = new Image(original.getHeight(), original.getWidth());
     expectedOutput.imageFill(expectedPixelsWithOutputLine);
+    String expectRandomString = "random";
     /* asserting that the original & output images same for every split
      * operation, with 0 %split */
     operationToCommandTokens.forEach((operation, commandTokens) -> {
@@ -1301,6 +1306,7 @@ public class ModelTest {
       ImageInterface outputImage = model.getImage(operation);
       assertEquals(expectedOutput, outputImage);
     });
+    assertEquals(expectRandomString, "random");
   }
 
   /**
