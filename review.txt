@@ -1,0 +1,52 @@
+Design Critique
+
+1. In GUI view, the operation buttons has a fixed window size without a scroller.
+This makes the buttons congested as more and more operations are added. Basically, the buttons
+window design is not extensible.
+
+2. In GUI view, the portion of image view is not appropriate. When image is loaded, half of the
+window size is not used at all. So, the window size is split in half where the first half is split
+again with buttons and second half contains histogram. Since histogram image size is just 256x256,
+the remaining part is unused making the GUI view not effective.
+
+3. In GUI view, the inputs are taken via a text box which is bad design as the user can enter inputs
+which are invalid. For example, enter a split percentage, etc. There should be a slider or some
+other form of input where the user can enter or specify the input value within a range which would
+make the user to perform fewer errors.
+
+4.
+
+Requested Changes
+
+1. Downscale function: The downscale function doesn't work as expected. The image itself is updated
+instead of just resizing the image.
+
+2. Levels Adjust: Levels adjust function wasn't working as expected when the input values given was
+out of bounds. There was an exception thrown in terminal (where application is running) when the
+levels adjust (out of bound) with split view was selected. Even after the fix given by the team,
+there is some other error thrown `Image not found` in the view and some exception in the
+terminal (where application is running).
+
+3. Loading an image without saving the current image didn't prompt for any warning or error. Exiting
+the application without saving the current image didn't prompt for any warning or error.
+
+4. The user was able to click on buttons or specify the input without loading an image. Only after
+input is completely taken the error was shown. This is bad design as disabling the buttons can
+reduce the number of errors an user can commit. This was fixed upon request.
+
+5. Important bug related to exiting the application: In GUI view closing the application immediately
+that is without loading an image, will throw an exception in the terminal and doesn't close the
+application itself. This bug is not fixed.
+
+6. Running some invalid command in terminal or in script throws an exception and exits out of the
+application instead of gracefully showing an error. This change is not fixed.
+
+7. Loading and saving invalid images is not handled correctly. Example, loading a .txt file throws
+an exception and exits the application. Saving an image to .txt file says as success and doesn't
+throw an error.
+
+Design/code strengths
+
+1. Implemented previous and next version which is a great add-on.
+2. Implementation has a constants file which has some common messages. New messages can be added
+in this place and used.
