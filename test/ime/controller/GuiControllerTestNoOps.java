@@ -352,7 +352,8 @@ public class GuiControllerTestNoOps {
 
     List<String> expectedLog = new ArrayList<String>() {
       {
-        add("splitView(dither, [dither, controller_tests_image_ppm, controller_tests_image_ppm-dither], controller_tests_image_ppm)");
+        add("splitView(dither, [dither, controller_tests_image_ppm, "
+            + "controller_tests_image_ppm-dither], controller_tests_image_ppm)");
       }
     };
 

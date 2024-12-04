@@ -1252,8 +1252,8 @@ public class ModelTest {
       operationToCommandTokens.forEach((operation, commandTokens) -> {
         try {
           model.operationsFactoryCall(operation, commandTokens, model);
-        } catch (IllegalArgumentException E) {
-          assertEquals("Split percent must be between 0 and 100", E.getMessage());
+        } catch (IllegalArgumentException e) {
+          assertEquals("Split percent must be between 0 and 100", e.getMessage());
         }
       });
     });

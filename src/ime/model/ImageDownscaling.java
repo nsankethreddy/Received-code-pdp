@@ -315,8 +315,8 @@ public class ImageDownscaling extends AbstractFilters {
     ImageInterface originalImage = model.getImage(imageName);
 
     if (targetWidth > originalImage.getWidth() || targetHeight > originalImage.getHeight()) {
-      throw new IllegalArgumentException("Target width/height cannot be greater " +
-          "than original width/height in downscaling.");
+      throw new IllegalArgumentException("Target width/height cannot be greater "
+          + "than original width/height in downscaling.");
     }
 
     if (targetWidth <= 0 || targetHeight <= 0) {

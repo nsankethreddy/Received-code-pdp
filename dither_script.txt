@@ -1,5 +1,0 @@
-load res/Manas.jpg manas
-dither manas manas_dither
-save manas_dither_script.jpg manas_dither
-save manas_dither_script.png manas_dither
-

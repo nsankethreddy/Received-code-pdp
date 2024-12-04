@@ -43,8 +43,7 @@ public class GuiControllerTest {
   public void setUp() {
     log = new ArrayList<>();
     mockModel = new MockModel(log, false);
-    selectedFile = new File(
-        "test/ime/controller/testResources/controller_tests_image_ppm.ppm");
+    selectedFile = new File("test/ime/controller/testResources/controller_tests_image_ppm.ppm");
     mockView = new MockGuiView(log, selectedFile, null);
     currentImageName = "controller_tests_image_ppm";
   }
@@ -70,8 +69,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testLoadImagePPM() {
-    String imagePath =
-        "test/ime/controller/testResources/controller_tests_image_ppm.ppm";
+    String imagePath = "test/ime/controller/testResources/controller_tests_image_ppm.ppm";
     File selectedFile = new File(imagePath);
     mockView = new MockGuiView(log, selectedFile, null);
     controller = new GUIController(mockModel, mockView);
@@ -82,14 +80,14 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, " + currentImageName
-            + ", " + currentImageNameHistogram + "])");
+        add("commandFactoryCall(histogram, [histogram, " + currentImageName + ", "
+            + currentImageNameHistogram + "])");
         add("convertAndFetchImage(" + currentImageNameHistogram + ")");
       }
     };
@@ -103,8 +101,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testLoadImagePNG() {
-    String imagePath =
-        "test/ime/controller/testResources/controller_tests_image_png.png";
+    String imagePath = "test/ime/controller/testResources/controller_tests_image_png.png";
     File selectedFile = new File(imagePath);
     mockView = new MockGuiView(log, selectedFile, null);
     controller = new GUIController(mockModel, mockView);
@@ -115,15 +112,14 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()"); // Log entry for loadImage method call
-        add("convertAndStoreImage(" + currentImageName
-            + ", {red=" + RED_MATRIX_READ + ", "
-            + "green=" + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ
-            + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", "
+            + "green=" + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha="
+            + ALPHA_MATRIX_READ + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: "); // Log for updating image display
-        add("commandFactoryCall(histogram, [histogram, " + currentImageName
-            + ", " + currentImageNameHistogram + "])");
+        add("commandFactoryCall(histogram, [histogram, " + currentImageName + ", "
+            + currentImageNameHistogram + "])");
         add("convertAndFetchImage(" + currentImageNameHistogram + ")");
       }
     };
@@ -137,8 +133,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testLoadImageJPG() throws IOException {
-    String imagePath =
-        "test/ime/controller/testResources/controller_tests_image_jpg.jpg";
+    String imagePath = "test/ime/controller/testResources/controller_tests_image_jpg.jpg";
     File selectedFile = new File(imagePath);
     mockView = new MockGuiView(log, selectedFile, null);
     controller = new GUIController(mockModel, mockView);
@@ -149,20 +144,19 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, " + currentImageName
-            + ", " + currentImageNameHistogram + "])");
+        add("commandFactoryCall(histogram, [histogram, " + currentImageName + ", "
+            + currentImageNameHistogram + "])");
         add("convertAndFetchImage(" + currentImageNameHistogram + ")");
       }
     };
-    assertTrue(expectedLog.stream().allMatch(expectedMessage
-        -> expectedLog.stream().anyMatch(
-        log -> log.contains(expectedMessage))));
+    assertTrue(expectedLog.stream().allMatch(
+        expectedMessage -> expectedLog.stream().anyMatch(log -> log.contains(expectedMessage))));
   }
 
   /**
@@ -172,8 +166,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testLoadImageErrorCase() {
-    String imagePath =
-        "test/ime/controller/testResources/controller_tests_image_ppm.ppm";
+    String imagePath = "test/ime/controller/testResources/controller_tests_image_ppm.ppm";
     File selectedFile = new File(imagePath);
     mockView = new MockGuiView(log, selectedFile, "failLoading");
     controller = new GUIController(mockModel, mockView);
@@ -194,8 +187,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testSaveImagePPM() throws IOException {
-    String filePath =
-        "test/ime/controller/testOutputs/controller_tests_image_ppm";
+    String filePath = "test/ime/controller/testOutputs/controller_tests_image_ppm";
     String currentImageName = "sample";
     String fileExtension = "ppm";
     File selectedFile = new File(filePath);
@@ -218,8 +210,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testSaveImagePNG() throws IOException {
-    String filePath =
-        "test/ime/controller/testOutputs/controller_tests_image_png";
+    String filePath = "test/ime/controller/testOutputs/controller_tests_image_png";
     String currentImageName = "sample";
     String fileExtension = "png";
     File selectedFile = new File(filePath);
@@ -243,8 +234,7 @@ public class GuiControllerTest {
    */
   @Test
   public void testSaveImageJPG() throws IOException {
-    String filePath =
-        "test/ime/controller/testOutputs/controller_tests_image_jpg";
+    String filePath = "test/ime/controller/testOutputs/controller_tests_image_jpg";
     String currentImageName = "sample";
     String fileExtension = "jpg";
     File selectedFile = new File(filePath);
@@ -277,8 +267,7 @@ public class GuiControllerTest {
     commandTokens.add(imageName);
 
     ArrayList<String> expectedLog = new ArrayList<>();
-    String filePath =
-        "test/ime/controller/testOutputs/controller_tests_image_png.png";
+    String filePath = "test/ime/controller/testOutputs/controller_tests_image_png.png";
     BufferedImage expectedCurrentImage = ImageIO.read(new File(filePath));
 
     expectedLog.add("convertAndFetchImage(currentImage)");
@@ -306,18 +295,16 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter brighten intensity "
-            + "(-255 to 255): )");
+        add("offerPromptToGetOperationParameters(Enter brighten intensity " + "(-255 to 255): )");
         add("displayError: No value passed!");
       }
     };
@@ -342,36 +329,29 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter brighten intensity "
-            + "(-255 to 255): )");
-        add("commandFactoryCall(brighten, [brighten, 255, "
-            + "controller_tests_image_ppm, "
+        add("offerPromptToGetOperationParameters(Enter brighten intensity " + "(-255 to 255): )");
+        add("commandFactoryCall(brighten, [brighten, 255, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-brighten])");
         add("convertAndFetchImage(controller_tests_image_ppm-brighten)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-brighten, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-brighten, "
             + "controller_tests_image_ppm-brighten-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-brighten-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-brighten-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-brighten, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-brighten)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-brighten, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-brighten, "
             + "controller_tests_image_ppm-brighten-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-brighten-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-brighten-" + "histogram)");
       }
     };
 
@@ -397,20 +377,17 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter brighten intensity "
-            + "(-255 to 255): )");
-        add("displayError: Exception trying to process: "
-            + "commandFactoryCall(brighten, "
+        add("offerPromptToGetOperationParameters(Enter brighten intensity " + "(-255 to 255): )");
+        add("displayError: Exception trying to process: " + "commandFactoryCall(brighten, "
             + "[brighten, 1000, controller_tests_image_ppm, "
             + "controller_tests_image_ppm-brighten])");
       }
@@ -434,18 +411,16 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter compression ratio "
-            + "(0-100): )");
+        add("offerPromptToGetOperationParameters(Enter compression ratio " + "(0-100): )");
         add("displayError: No value passed!");
       }
     };
@@ -470,36 +445,29 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter compression ratio "
-            + "(0-100): )");
-        add("commandFactoryCall(compress, [compress, 20, "
-            + "controller_tests_image_ppm, "
+        add("offerPromptToGetOperationParameters(Enter compression ratio " + "(0-100): )");
+        add("commandFactoryCall(compress, [compress, 20, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-compress])");
         add("convertAndFetchImage(controller_tests_image_ppm-compress)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-compress, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-compress, "
             + "controller_tests_image_ppm-compress-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-compress-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-compress-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-compress, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-compress)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-compress, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-compress, "
             + "controller_tests_image_ppm-compress-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-compress-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-compress-" + "histogram)");
       }
     };
 
@@ -525,20 +493,17 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("offerPromptToGetOperationParameters(Enter compression ratio "
-            + "(0-100): )");
-        add("displayError: Exception trying to process: "
-            + "commandFactoryCall(compress, "
+        add("offerPromptToGetOperationParameters(Enter compression ratio " + "(0-100): )");
+        add("displayError: Exception trying to process: " + "commandFactoryCall(compress, "
             + "[compress, 1000, controller_tests_image_ppm, "
             + "controller_tests_image_ppm-compress])");
       }
@@ -566,34 +531,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(" + currentImageName + ")");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, " + currentImageName
-            + ", " + currentImageNameHistogram + "])");
+        add("commandFactoryCall(histogram, [histogram, " + currentImageName + ", "
+            + currentImageNameHistogram + "])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(horizontal-flip, [horizontal-flip, "
-            + "controller_tests_image_ppm,"
+        add("commandFactoryCall(horizontal-flip, [horizontal-flip, " + "controller_tests_image_ppm,"
             + " controller_tests_image_ppm-horizontal-flip])");
         add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-horizontal-flip, "
             + "controller_tests_image_ppm-horizontal-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip-"
-            + "histogram)");
-        add("offerToSaveImage(controller_tests_image_ppm-horizontal-flip, "
-            + "ppm)");
+        add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip-" + "histogram)");
+        add("offerToSaveImage(controller_tests_image_ppm-horizontal-flip, " + "ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-horizontal-flip, "
             + "controller_tests_image_ppm-horizontal-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-horizontal-flip-" + "histogram)");
       }
     };
 
@@ -617,34 +578,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(vertical-flip, [vertical-flip, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(vertical-flip, [vertical-flip, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-vertical-flip])");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-vertical-flip, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
       }
     };
 
@@ -666,34 +623,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(red-component, [red-component, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(red-component, [red-component, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-red-component])");
         add("convertAndFetchImage(controller_tests_image_ppm-red-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-red-component, "
             + "controller_tests_image_ppm-red-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-red-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-red-component-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-red-component, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-red-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-red-component,"
             + " controller_tests_image_ppm-red-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-red-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-red-component-" + "histogram)");
       }
     };
 
@@ -716,35 +669,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("commandFactoryCall(green-component, [green-component, "
-            + "controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-green-component])");
+            + "controller_tests_image_ppm, " + "controller_tests_image_ppm-green-component])");
         add("convertAndFetchImage(controller_tests_image_ppm-green-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-green-component, "
             + "controller_tests_image_ppm-green-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-green-component-"
-            + "histogram)");
-        add("offerToSaveImage(controller_tests_image_ppm-green-component, "
-            + "ppm)");
+        add("convertAndFetchImage(controller_tests_image_ppm-green-component-" + "histogram)");
+        add("offerToSaveImage(controller_tests_image_ppm-green-component, " + "ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-green-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-green-component, "
             + "controller_tests_image_ppm-green-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-green-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-green-component-" + "histogram)");
       }
     };
 
@@ -767,34 +715,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(blue-component, [blue-component, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(blue-component, [blue-component, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-blue-component])");
         add("convertAndFetchImage(controller_tests_image_ppm-blue-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-blue-component, "
             + "controller_tests_image_ppm-blue-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-blue-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-blue-component-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-blue-component, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-blue-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-blue-component, "
             + "controller_tests_image_ppm-blue-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-blue-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-blue-component-" + "histogram)");
       }
     };
 
@@ -817,35 +761,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("commandFactoryCall(value-component, [value-component, "
-            + "controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-value-component])");
+            + "controller_tests_image_ppm, " + "controller_tests_image_ppm-value-component])");
         add("convertAndFetchImage(controller_tests_image_ppm-value-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-value-component, "
             + "controller_tests_image_ppm-value-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-value-component-"
-            + "histogram)");
-        add("offerToSaveImage(controller_tests_image_ppm-value-component, "
-            + "ppm)");
+        add("convertAndFetchImage(controller_tests_image_ppm-value-component-" + "histogram)");
+        add("offerToSaveImage(controller_tests_image_ppm-value-component, " + "ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-value-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-value-component, "
             + "controller_tests_image_ppm-value-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-value-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-value-component-" + "histogram)");
       }
     };
 
@@ -868,37 +807,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("commandFactoryCall(intensity-component, [intensity-component, "
-            + "controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-intensity-component])");
-        add("convertAndFetchImage(controller_tests_image_ppm-intensity-"
-            + "component)");
+            + "controller_tests_image_ppm, " + "controller_tests_image_ppm-intensity-component])");
+        add("convertAndFetchImage(controller_tests_image_ppm-intensity-" + "component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-intensity-component, "
             + "controller_tests_image_ppm-intensity-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-intensity-"
-            + "component-histogram)");
-        add("offerToSaveImage(controller_tests_image_ppm-intensity-component, "
-            + "ppm)");
-        add("convertAndFetchImage(controller_tests_image_ppm-intensity-"
-            + "component)");
+        add("convertAndFetchImage(controller_tests_image_ppm-intensity-" + "component-histogram)");
+        add("offerToSaveImage(controller_tests_image_ppm-intensity-component, " + "ppm)");
+        add("convertAndFetchImage(controller_tests_image_ppm-intensity-" + "component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-intensity-component, "
             + "controller_tests_image_ppm-intensity-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-intensity-"
-            + "component-histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-intensity-" + "component-histogram)");
       }
     };
 
@@ -921,34 +853,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(luma-component, [luma-component, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(luma-component, [luma-component, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-luma-component])");
         add("convertAndFetchImage(controller_tests_image_ppm-luma-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-luma-component, "
             + "controller_tests_image_ppm-luma-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-luma-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-luma-component-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-luma-component, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-luma-component)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-luma-component, "
             + "controller_tests_image_ppm-luma-component-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-luma-component-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-luma-component-" + "histogram)");
       }
     };
 
@@ -971,20 +899,17 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("splitView(color-correct, [color-correct, "
-            + "controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-color-correct], "
-            + "controller_tests_image_ppm)");
+        add("splitView(color-correct, [color-correct, " + "controller_tests_image_ppm, "
+            + "controller_tests_image_ppm-color-correct], " + "controller_tests_image_ppm)");
       }
     };
 
@@ -1006,14 +931,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("splitView(blur, [blur, controller_tests_image_ppm, "
@@ -1039,19 +963,17 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("splitView(sharpen, [sharpen, controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-sharpen], "
-            + "controller_tests_image_ppm)");
+            + "controller_tests_image_ppm-sharpen], " + "controller_tests_image_ppm)");
       }
     };
 
@@ -1073,14 +995,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("splitView(sepia, [sepia, controller_tests_image_ppm, "
@@ -1108,14 +1029,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter black point (0-255):)");
@@ -1142,15 +1062,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName
-            + ", {red=" + RED_MATRIX_READ + ", "
-            + "green=" + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ
-            + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", "
+            + "green=" + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha="
+            + ALPHA_MATRIX_READ + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter black point (0-255):)");
@@ -1178,14 +1096,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter black point (0-255):)");
@@ -1214,23 +1131,20 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter black point (0-255):)");
         add("offerPromptToGetOperationParameters(Enter mid point (0-255):)");
         add("offerPromptToGetOperationParameters(Enter white point (0-255):)");
-        add("splitView(levels-adjust, [levels-adjust, 50, 50, 50, "
-            + "controller_tests_image_ppm, "
-            + "controller_tests_image_ppm-levels-adjust], "
-            + "controller_tests_image_ppm)");
+        add("splitView(levels-adjust, [levels-adjust, 50, 50, 50, " + "controller_tests_image_ppm, "
+            + "controller_tests_image_ppm-levels-adjust], " + "controller_tests_image_ppm)");
       }
     };
 
@@ -1253,14 +1167,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter target width: )");
@@ -1287,14 +1200,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter target width: )");
@@ -1323,36 +1235,30 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("offerPromptToGetOperationParameters(Enter target width: )");
         add("offerPromptToGetOperationParameters(Enter target height: )");
-        add("commandFactoryCall(downscale, [downscale, 50, 50, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(downscale, [downscale, 50, 50, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-downscale])");
         add("convertAndFetchImage(controller_tests_image_ppm-downscale)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-downscale, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-downscale, "
             + "controller_tests_image_ppm-downscale-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-downscale-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-downscale-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-downscale, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-downscale)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm-downscale, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm-downscale, "
             + "controller_tests_image_ppm-downscale-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-downscale-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-downscale-" + "histogram)");
       }
     };
 
@@ -1377,63 +1283,51 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(vertical-flip, [vertical-flip, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(vertical-flip, [vertical-flip, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-vertical-flip])");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-vertical-flip, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
         add("commandFactoryCall(horizontal-flip, [horizontal-flip, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-horizontal-flip])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "horizontal-flip)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "horizontal-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip-horizontal-flip, "
-            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
-            + "histogram])");
-        add("convertAndFetchImage("
-            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
+            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-" + "histogram])");
+        add("convertAndFetchImage(" + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
             + "histogram)");
-        add("offerToSaveImage(controller_tests_image_ppm-vertical-flip-"
-            + "horizontal-flip, ppm)");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "horizontal-flip)");
+        add("offerToSaveImage(controller_tests_image_ppm-vertical-flip-" + "horizontal-flip, ppm)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "horizontal-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip-horizontal-flip, "
-            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
-            + "histogram])");
-        add("convertAndFetchImage("
-            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
+            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-" + "histogram])");
+        add("convertAndFetchImage(" + "controller_tests_image_ppm-vertical-flip-horizontal-flip-"
             + "histogram)");
         add("splitView(color-correct, [color-correct, "
             + "controller_tests_image_ppm-vertical-flip-horizontal-flip, "
-            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-color-"
-            + "correct], "
+            + "controller_tests_image_ppm-vertical-flip-horizontal-flip-color-" + "correct], "
             + "controller_tests_image_ppm-vertical-flip-horizontal-flip)]");
       }
     };
@@ -1461,38 +1355,33 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
-        add("commandFactoryCall(vertical-flip, [vertical-flip, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(vertical-flip, [vertical-flip, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-vertical-flip])");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
         add("offerToSaveImage(controller_tests_image_ppm-vertical-flip, ppm)");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
         add("updateImageDisplay: ");
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip)");
@@ -1500,8 +1389,7 @@ public class GuiControllerTest {
         add("commandFactoryCall(histogram, [histogram, "
             + "controller_tests_image_ppm-vertical-flip, "
             + "controller_tests_image_ppm-vertical-flip-histogram])");
-        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-"
-            + "histogram)");
+        add("convertAndFetchImage(controller_tests_image_ppm-vertical-flip-" + "histogram)");
       }
     };
 
@@ -1526,14 +1414,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
       }
@@ -1559,14 +1446,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
       }
@@ -1590,14 +1476,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("saveWithFileChooser(controller_tests_image_ppm, ppm)");
@@ -1606,8 +1491,7 @@ public class GuiControllerTest {
     };
 
     boolean allExpectedMessagesLogged = expectedLog.stream().allMatch(
-        expectedMessage
-            -> expectedLog.stream().anyMatch(log -> log.contains(expectedMessage)));
+        expectedMessage -> expectedLog.stream().anyMatch(log -> log.contains(expectedMessage)));
 
     assertTrue(allExpectedMessagesLogged);
   }
@@ -1630,14 +1514,13 @@ public class GuiControllerTest {
     List<String> expectedLog = new ArrayList<String>() {
       {
         add("loadImage()");
-        add("convertAndStoreImage(" + currentImageName + ", {red="
-            + RED_MATRIX_READ + ", green=" + GREEN_MATRIX_READ + ", blue="
-            + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ + "})");
+        add("convertAndStoreImage(" + currentImageName + ", {red=" + RED_MATRIX_READ + ", green="
+            + GREEN_MATRIX_READ + ", blue=" + BLUE_MATRIX_READ + ", alpha=" + ALPHA_MATRIX_READ
+            + "})");
         add("displayMessage: Image loaded successfully.");
         add("convertAndFetchImage(controller_tests_image_ppm)");
         add("updateImageDisplay: ");
-        add("commandFactoryCall(histogram, [histogram, "
-            + "controller_tests_image_ppm, "
+        add("commandFactoryCall(histogram, [histogram, " + "controller_tests_image_ppm, "
             + "controller_tests_image_ppm-histogram])");
         add("convertAndFetchImage(controller_tests_image_ppm-histogram)");
         add("saveWithFileChooser(controller_tests_image_ppm, ppm)");

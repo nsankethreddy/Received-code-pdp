@@ -148,7 +148,7 @@ public interface GUIFeaturesInterface {
   /**
    * Actions to perform on window closing.
    *
-   * @throws IOException
+   * @throws IOException throws an exception if there's any error.
    */
   void windowClosing() throws IOException;
 

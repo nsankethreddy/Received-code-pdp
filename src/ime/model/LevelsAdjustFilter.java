@@ -29,8 +29,8 @@ public class LevelsAdjustFilter extends AbstractFilters {
     int m = Integer.parseInt(commandTokens.get(2)); // Midtone point
     int w = Integer.parseInt(commandTokens.get(3)); // White point
     if (b < 0 || b >= m || m >= w || w > 255) {
-      throw new IllegalArgumentException("Invalid levels adjustment values. " +
-          "Ensure 0 <= b < m < w <= 255.");
+      throw new IllegalArgumentException("Invalid levels adjustment values. "
+          + "Ensure 0 <= b < m < w <= 255.");
     }
     String imageName = commandTokens.get(4);        // Source image name
     String destImageName = commandTokens.get(5);    // Destination image name
