@@ -1,5 +1,9 @@
 Implemented Dithering on the existing code: Y
 
+Script command for dithering: Y
+
+Dithering from GUI: Y
+
 (Details for Dithering is on the bottom of this file)
 
 # Image Manipulation and Enhancement (IME)
